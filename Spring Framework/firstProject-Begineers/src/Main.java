@@ -4,7 +4,11 @@ import Abstract.DogBark;
 import Abstract.RecipeOne;
 import Array.StringRunner;
 import Array.StudentRunner;
+import FunctionalProgramming.FunctionalProgramming;
 import Interface.*;
+import MultiThreading.AnotherThread;
+import MultiThreading.CallableService;
+import MultiThreading.ThreadBasics;
 import Shape.Rectangle;
 import calculator.SimpleInterest;
 import coollections.Student;
@@ -21,11 +25,15 @@ import vehicle.MotorBikeRunner;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
-import static com.sun.tools.javac.main.Option.X;
+//import static com.sun.tools.javac.main.Option.X;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
 //        MotorBikeRunner ducati = new MotorBikeRunner();
 //        MotorBikeRunner honda = new MotorBikeRunner(100000);
 //        ducati.setTopSpeed(120);
@@ -138,16 +146,71 @@ public class Main {
 //        Collections.sort(students);
 //        System.out.println(studentsAl);
 
-        LearningGenerics<String> genericsString =  new LearningGenerics();
-        LearningGenerics<Integer> genericsString2 =  new LearningGenerics();
+//        LearningGenerics<String> genericsString =  new LearningGenerics();
+//        LearningGenerics<Integer> genericsString2 =  new LearningGenerics();
+//
+//        genericsString.addElement("Param");
+//        genericsString.addElement("Arvind");
+//
+//        genericsString2.addElement(1);
+//        //THey both are the same thing
+//        genericsString2.addElement(Integer.valueOf(100));
+//        genericsString2.getElement(1);
 
-        genericsString.addElement("Param");
-        genericsString.addElement("Arvind");
+//        FunctionalProgramming functionMethods = new FunctionalProgramming();
+//        List<String> list = List.of("a","b","c");
+//        List<Integer> listNumbers = List.of(10,21);
+//        functionMethods.printElements(list);
+//        functionMethods.printWithStream(list);
+//        functionMethods.printWithFiltering(listNumbers);
+//        Integer result = functionMethods.returnSum(listNumbers);
+//        System.out.println(result);
+//
+//        System.out.println(List.of(1,2,3,4,5));
 
-        genericsString2.addElement(1);
-        //THey both are the same thing
-        genericsString2.addElement(Integer.valueOf(100));
-        genericsString2.getElement(1);
+//        System.out.println("Task One Kicked Off");
+//        ThreadBasics firstThread = new ThreadBasics();
+//
+//        firstThread.setPriority(10);
+//        firstThread.start();
+//
+//        System.out.println("Task Two Kicked Off");
+//        AnotherThread secondThread = new AnotherThread();
+//        Thread thread2 = new Thread(secondThread);
+//        thread2.setPriority(1);
+//        thread2.start();
+//        firstThread.join();
+//        thread2.join();
+//
+//        Thread.sleep(10000);
+//
+//        System.out.println("Task Three Kicked Off");
+//        for (int i = 301; i < 399; i++) {
+//            System.out.print(i+" ");
+//        }
+//        System.out.println("Task 3: Done");
+//        }
+
+//        ExecutorService executorService = Executors.newFixedThreadPool(5);
+//
+//        executorService.execute(new ThreadBasics(1));
+//        executorService.execute(new ThreadBasics(2));
+//        executorService.execute(new ThreadBasics(3));
+//        executorService.execute(new ThreadBasics(4));
+//        executorService.execute(new ThreadBasics(5));
+
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
+
+        List<CallableService> tasks = List.of(new CallableService("First callable"), new CallableService("Second service"));
+
+
+        String result = executorService.invokeAny(tasks);
+
+        System.out.println(result);
+
+        System.out.println("Main method");
+
+        executorService.shutdown();
 
 
         }
