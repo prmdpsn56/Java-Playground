@@ -4,6 +4,7 @@ import Abstract.DogBark;
 import Abstract.RecipeOne;
 import Array.StringRunner;
 import Array.StudentRunner;
+import ExceptionHandling.ExceptionHandler;
 import FunctionalProgramming.FunctionalProgramming;
 import Interface.*;
 import MultiThreading.AnotherThread;
@@ -22,7 +23,11 @@ import number.TestOperation;
 import oops.Fan;
 import vehicle.MotorBikeRunner;
 
+import java.io.File;
 import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
@@ -33,7 +38,7 @@ import java.util.concurrent.Future;
 //import static com.sun.tools.javac.main.Option.X;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException, ExecutionException {
+    public static void main(String[] args) throws Exception {
 //        MotorBikeRunner ducati = new MotorBikeRunner();
 //        MotorBikeRunner honda = new MotorBikeRunner(100000);
 //        ducati.setTopSpeed(120);
@@ -199,20 +204,35 @@ public class Main {
 //        executorService.execute(new ThreadBasics(4));
 //        executorService.execute(new ThreadBasics(5));
 
-        ExecutorService executorService = Executors.newFixedThreadPool(2);
+//Executor Service
 
-        List<CallableService> tasks = List.of(new CallableService("First callable"), new CallableService("Second service"));
+//        ExecutorService executorService = Executors.newFixedThreadPool(2);
+//
+//        List<CallableService> tasks = List.of(new CallableService("First callable"), new CallableService("Second service"));
+//
+//
+//        String result = executorService.invokeAny(tasks);
+//
+//        System.out.println(result);
+//
+//        System.out.println("Main method");
+//
+//        executorService.shutdown();
 
+//        try{
+//            Thread.sleep(23123);
+//        }catch (InterruptedException e){
+//            System.out.println("Another Exception");
+//        }
 
-        String result = executorService.invokeAny(tasks);
+//
+//        ExceptionHandler  amount = new ExceptionHandler("USD",10);
+//        ExceptionHandler  amount2 = new ExceptionHandler("euro",30);
+//
+//        amount.add(amount2);
+//        System.out.println(amount);
 
-        System.out.println(result);
-
-        System.out.println("Main method");
-
-        executorService.shutdown();
-
-
+        Files.list(Paths.get(".")).forEach((item)->System.out.println(item));
         }
     }
 
